@@ -3,9 +3,8 @@ POST http://localhost:3000/api/product
 content-type: application/json
 
 {
-    "name": "water",
-    "price": 1.99,
-    "description": "A water."
+    "name": "chocolate",
+    "price": 5.99
 }
 
 ### Get all products
@@ -13,7 +12,7 @@ GET http://localhost:3000/api/product
 
 ### Get a product by its id
 GET http://localhost:3000/api/product/6307713117678597eafbb2b8
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMwYTI3ZTNkYjg4MDM5YzJlZTNkOTBlIiwibmFtZSI6IlRlc3QyIiwiZW1haWwiOiJUZXN0MkB0ZXN0LmNvbSJ9LCJpYXQiOjE2NjE2MTAwMjQsImV4cCI6MTY2MTYxMzYyNH0.8bFTnLkDAzEctVuNDcRbhTmVL5m8TLHP21YvmRe3PEM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMwYjVlMTc1MTQ3ZTNkMWU2YWY1NTM4IiwibmFtZSI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20ifSwiaWF0IjoxNjYxNjg5NTAzLCJleHAiOjE2NjE2OTMxMDN9.FBM9GneYifPxjCY_DVoX2TCuIiN82bWV0OqzFi_wVao
 
 ### Update a product
 PATCH http://localhost:3000/api/product/6307713117678597eafbb2b8
@@ -28,9 +27,9 @@ POST http://localhost:3000/api/auth/register
 content-type: application/json
 
 {
-    "name": "Test2",
-    "email": "Test2@test.com",
-    "password": "Test"
+    "name": "Admin",
+    "email": "admin@admin.com",
+    "password": "admin"
 }
 
 ### Login
@@ -38,6 +37,31 @@ POST http://localhost:3000/api/auth/login
 content-type: application/json
 
 {
-    "email": "Test2@test.com",
-    "password": "Test"
+    "email": "admin@admin.com",
+    "password": "admin"
+}
+
+### Verify JWT
+POST http://localhost:3000/api/auth/verify-jwt
+content-type: application/json
+
+{
+    "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMwYjVlMTc1MTQ3ZTNkMWU2YWY1NTM4IiwibmFtZSI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20ifSwiaWF0IjoxNjYxNjg5NTAzLCJleHAiOjE2NjE2OTMxMDN9.FBM9GneYifPxjCY_DVoX2TCuIiN82bWV0OqzFi_wVao"
+}
+
+### Stripe payment
+POST http://localhost:3000/api/stripe
+content-type: application/json
+
+{
+    "cart": [
+        {
+            "description": "Learning react",
+            "name": "React course",
+            "price": 9.99,
+            "quantity": 2,
+            "__v": 0,
+            "_id": "6307713117678597eafbb2b2"
+        }
+    ]
 }
